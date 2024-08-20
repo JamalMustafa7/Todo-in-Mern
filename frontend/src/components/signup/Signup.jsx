@@ -1,8 +1,23 @@
-import React, { act } from 'react'
+import React, { act, useState } from 'react'
 import { useFormik } from 'formik';
 import {userSchema} from '../../validations/userSchema';
 import axios from 'axios'
+import { useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
+import Loading from '../Loading/Loading';
 const Signup = () => {
+    const [loading,setLoading]=useState(true)
+    const navigate=useNavigate()
+    useEffect(()=>
+    {
+        const id=localStorage.getItem("id");
+        if(id)
+            {
+                setLoading(false)
+                navigate("/login");
+            }
+        setLoading(false)
+    },[])
     async function formSubmit(values,action)
     {
         
@@ -13,7 +28,6 @@ const Signup = () => {
             }
             ).catch(err=>console.log(err))
     }
-    
     const {errors,handleBlur,isSubmitting,touched,values,handleChange,handleSubmit}=useFormik(
         {
             initialValues:{
@@ -28,7 +42,12 @@ const Signup = () => {
     )
     console.log(errors)
     console.log(isSubmitting)
-
+    if(loading)
+    {
+        return(
+            <Loading />
+        )
+    }
   return (
     <div className='flex items-center min-h-screen bg-slate-800'>
         <div className='flex-1 max-w-80 mx-auto'>
