@@ -33,6 +33,7 @@ const AddTodo = ({ todos, setTodos }) => {
       <div className="flex flex-col space-y-4 w-full max-w-md">
         <input
           type="text"
+          required
           value={todoName}
           onChange={(e) => setTodoName(e.target.value)}
           placeholder="Enter todo name"
@@ -41,6 +42,7 @@ const AddTodo = ({ todos, setTodos }) => {
         <input
           type="date"
           value={expiryDate}
+          required
           onChange={(e) => setExpiryDate(e.target.value)}
           min={new Date().toISOString().split('T')[0]} // Set min date to today
           className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -48,6 +50,7 @@ const AddTodo = ({ todos, setTodos }) => {
         <button
           onClick={addTodo}
           className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={!todoName && !expiryDate}
         >
           Add
         </button>

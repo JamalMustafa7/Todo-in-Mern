@@ -105,12 +105,13 @@ app.post("/todo/changeStatus",async(req,res)=>
         const todo=await Todo.findById(todoId)
         todo.status=status
         todo.save()
+        console.log("changed")
+        res.status(200).send("Changed")
     }
     catch(err){
         console.log(err)
         res.status(400).send(err)
     }
-    console.log("changed")
 })
 app.get('/',(req,res)=>
 {
