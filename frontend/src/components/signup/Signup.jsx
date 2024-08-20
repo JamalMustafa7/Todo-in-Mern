@@ -1,4 +1,4 @@
-import React, { act, useState } from 'react'
+import React, {useState } from 'react'
 import { useFormik } from 'formik';
 import {userSchema} from '../../validations/userSchema';
 import axios from 'axios'
@@ -14,16 +14,16 @@ const Signup = () => {
         if(id)
             {
                 setLoading(false)
-                navigate("/login");
+                navigate("/todos");
             }
         setLoading(false)
     },[])
     async function formSubmit(values,action)
     {
         
-            return axios.post("http://localhost:4000/signup",{name:values.name,email:values.email,password:values.password}).then(id=>
+            return axios.post("http://localhost:4000/signup",{name:values.name,email:values.email,password:values.password}).then(res=>
             {
-                localStorage.setItem("id",id)
+                localStorage.setItem("id",res.data)
                 console.log('item added')
             }
             ).catch(err=>console.log(err))
