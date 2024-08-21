@@ -4,6 +4,7 @@ const User=require('./models/userModel')
 const Todo=require('./models/todoModel')
 const bcrypt=require("bcrypt");
 const cors=require('cors')
+const path=require('path')
 const port=process.env.PORT || 4000
 const app=express()
 app.use(express.json())
@@ -114,6 +115,8 @@ app.post("/todo/changeStatus",async(req,res)=>
     }
 })
 app.get('/',(req,res)=>
-{
-    res.status(200).send("Hello World")
-})
+    {
+        app.use(express.static(path.resolve(__dirname,"frontend","build")))
+        res.sendFile(path.resolve(__dirname,"frontend","build","index.html"))
+    })
+    

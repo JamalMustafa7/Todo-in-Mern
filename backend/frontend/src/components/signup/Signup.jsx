@@ -21,7 +21,7 @@ const Signup = () => {
   const formSubmit = async (values, actions) => {
     setLoading(true);
     try {
-      const res = await axios.post(`${window.location.origin}/signup`, {
+      const res = await axios.post('http://localhost:4000/signup', {
         name: values.name,
         email: values.email,
         password: values.password,
