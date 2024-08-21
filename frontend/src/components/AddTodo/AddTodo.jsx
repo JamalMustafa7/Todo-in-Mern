@@ -28,9 +28,9 @@ const AddTodo = ({ todos, setTodos }) => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-lg min-w-72">
       <h2 className="text-xl font-semibold mb-4">Add a New Todo</h2>
-      <div className="flex flex-col space-y-4 w-full max-w-md">
+      <div className="flex flex-col space-y-4 max-w-md">
         <input
           type="text"
           required

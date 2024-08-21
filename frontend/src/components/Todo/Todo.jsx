@@ -3,11 +3,11 @@ import axios from 'axios';
 import Loading from '../Loading/Loading';
 import AddTodo from '../AddTodo/AddTodo';
 import getTodo from '../getTodo';
-
+import { useNavigate } from 'react-router-dom';
 const Todo = () => {
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+  const navigate=useNavigate()
   async function changeStatus(todo,status)
   {
     setLoading(true)
@@ -61,9 +61,17 @@ const Todo = () => {
 
   
   return (
-    <div className="p-4 max-w-screen-lg mx-auto">
+    <div className="p-4 max-w-5xl min-w-80 mx-auto">
+      <button
+              className={`mb-3 p-2 text-white rounded-lg focus:outline-none bg-blue-500 hover:bg-blue-600'} transition-colors duration-300`}
+              onClick={()=>{
+                localStorage.removeItem("id")
+                navigate("/login")
+              }}
+            >
+              Logout
+        </button>
       <AddTodo todos={todos} setTodos={setTodos} />
-
       {loading ? (
         <Loading height={350} />
       ) : todos?.length > 0 ? (
@@ -97,6 +105,8 @@ const Todo = () => {
       ) : (
         <div className="mt-4 text-center text-gray-500">Todos Not Found</div>
       )}
+
+      
     </div>
   );
 };

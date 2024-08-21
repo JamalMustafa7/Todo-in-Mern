@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { userSchema } from '../../validations/userSchema';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 
 const Signup = () => {
@@ -61,7 +61,7 @@ const Signup = () => {
 
   return (
     <div className="flex items-center min-h-screen bg-gray-200">
-      <div className="w-full max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <div className="min-w-80 max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg flex-grow">
         <h3 className="text-2xl font-semibold text-center mb-6 text-gray-800">Signup</h3>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -127,6 +127,13 @@ const Signup = () => {
           >
             {isSubmitting ? 'Submitting...' : 'Register'}
           </button>
+          <Link to="/login" className='block'>
+            <button
+              className={`w-full py-3 text-white rounded-lg focus:outline-none ${isSubmitting ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} transition-colors duration-300`}
+              disabled={isSubmitting}
+            >Login</button>
+          </Link>
+            
         </form>
       </div>
     </div>
