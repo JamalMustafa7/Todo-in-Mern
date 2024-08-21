@@ -12,7 +12,7 @@ const Todo = () => {
   {
     setLoading(true)
     try{
-      await axios.post("http://localhost:4000/todo/changeStatus", {
+      await axios.post(`${window.location.origin}/todo/changeStatus`, {
         todoId: todo._id,
         status: status
       });
@@ -32,7 +32,7 @@ const Todo = () => {
         // Use forEach correctly with async/await
         const updatePromises = todos.map(async (todo) => {
           if (Date.now() >= new Date(todo.expiryDate).getTime() && todo.status !== "expired") {
-            return axios.post("http://localhost:4000/todo/changeStatus", {
+            return axios.post(`${window.location.origin}/todo/changeStatus`, {
               todoId:todo._id,
               status: "expired"
             });

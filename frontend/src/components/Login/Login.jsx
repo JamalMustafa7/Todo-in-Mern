@@ -23,7 +23,7 @@ const Login = () => {
     console.log("in handle submit")
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:4000/login', {
+      const res = await axios.post(`${window.location.origin}/login`, {
         email: values.email,
         password: values.password,
       });

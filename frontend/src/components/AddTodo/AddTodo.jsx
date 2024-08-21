@@ -9,7 +9,7 @@ const AddTodo = ({ todos, setTodos }) => {
   const navigate = useNavigate();
 
   function addTodo() {
-    axios.post("http://localhost:4000/addTodo", {
+    axios.post(`${window.location.origin}/addTodo`, {
       name: todoName,
       status: "todo",
       expiryDate: new Date(expiryDate), // Ensure the date is in ISO format
